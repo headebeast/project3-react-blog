@@ -104,9 +104,9 @@ class Categories extends Component {
                   : this.state.categories.map((x, i) => (
                     <tr key={i}>
                       <td>{x.id}</td>
-                      <td>{x.body}</td>
+                      <td>{x.categoryName}</td>
+                      <td>{x.userIdf}</td>
                       <td>{x.postId}</td>
-                      <td>{x.userId}</td>
                       <td className="">
                         <div className="d-flex flex-wrap align-content-center">
                           <button onClick={() => this.setState({ category: x })} className="btn btn-warning editBtn">
