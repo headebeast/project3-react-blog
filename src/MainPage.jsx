@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Modal, ModalBody, ModalFooter, ModalHeader, Col, Row, Button} from 'reactstrap';
-import axios from "axios";
+
 
 class MainPage extends Component {
 
@@ -14,16 +14,6 @@ class MainPage extends Component {
     })
   }
 
-  componentDidMount() {
-    axios.get('http://localhost:3000/')
-      .then(res => {
-        this.setState({
-          posts: res.data,
-          loading: false
-        })
-      })
-
-  }
 
   render() {
     return (
@@ -41,43 +31,6 @@ class MainPage extends Component {
         <Modal isOpen={this.state.modalOpen} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>
-              <div className="col-lg-12 table-responsive">
-                <table className="table table-bordered">
-                  <thead className="thead-dark">
-                    <tr className="table">
-                      <th>Id</th>
-                      <th>body</th>
-                      <th>User Id</th>
-                      <th>title</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {this.state.loading
-                      ? <tr><td>LOADING</td></tr>
-                      : this.state.posts.map((x, i) => (
-                        <tr key={i}>
-                          <td>{x.id}</td>
-                          <td>{x.body}</td>
-                          <td>{x.userId}</td>
-                          <td>{x.title}</td>
-                          <td>
-                            <div className="d-flex flex-wrap align-content-center">
-                              <button onClick={() => this.setState({ post: x })} className="btn btn-warning editBtn">
-                                Edit
-                        </button>
-                              <button onClick={() => this.deletePost(x.id)} className="btn btn-danger deleteBtn">
-                                Delete
-                        </button>
-                            </div>
-                          </td>
-                        </tr>
-                      ))
-                    }
-                  </tbody>
-                </table>
-              </div>
-
           </ModalBody>
           <ModalFooter>
             <div>
