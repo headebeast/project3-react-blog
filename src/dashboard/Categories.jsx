@@ -4,11 +4,11 @@ import  axios  from "axios";
 
 class Categories extends Component {
    state = {
-    comments: [],
+    categories: [],
     loading: true,
-    categories: {
+    category: {
       userId: '',
-      body: '',
+      categoryName: '',
     }
   }
 
@@ -17,7 +17,7 @@ class Categories extends Component {
       .then(res => {
         console.log(res);
         this.setState({
-          comments: this.state.comments.filter(x => x.id !== id)
+          categories: this.state.categories.filter(x => x.id !== id)
         })
       })
   }
@@ -26,7 +26,7 @@ class Categories extends Component {
     axios.get('http://localhost:3000/categories/')
       .then(res => {
         this.setState({
-          comments: res.data,
+          categories: res.data,
           loading: false
         })
       })
@@ -35,8 +35,8 @@ class Categories extends Component {
 
   bindInputToState = e => {
     this.setState({
-      comment: {
-        ...this.state.comment,
+      category: {
+        ...this.state.category,
         [e.target.name]: e.target.value
       }
     })
@@ -45,26 +45,29 @@ class Categories extends Component {
   updatePost = e => {
     e.preventDefault();
 
-    if (this.state.comment.id) {
-      axios.put('http://localhost:3000/categories/' + this.state.comment.id,
-        this.state.comment)
+    if (this.state.category.id) {
+      axios.put('http://localhost:3000/categories/' + this.state.category.id,
+        this.state.category)
         .then(res => {
           this.setState({
-            comments: this.state.comments.map(x => {
+            categories: this.state.categories.map(x => {
               if (x.id === res.data.id) {
                 return res.data;
               }
 
               return x;
             }),
-            comment: { userId: '', body: '' }
+            category: { userId: '', categoryName: '' }
           })
         })
     } else {
-      axios.post('http://localhost:3000/categories/', this.state.comment)
-        .then(res => {
-          console.log(res)
-        })
+      axios.post('http://localhost:3000/categories/', this.state.category)
+      this.setState({
+        category: {
+          ...this.state.category,
+          [e.target.name]: e.target.value
+        }
+      })
     }
   }
 
@@ -75,12 +78,12 @@ class Categories extends Component {
         <div className="row">
           <div className="col-md-12">
             <form onSubmit={this.updatePost} className="formOn">
-              <input id="title" value={this.state.comment.userId}
+              <input id="userId" value={this.state.category.userId}
                 onChange={this.bindInputToState}
                 type="text" name="title" className="form-control" placeholder="Title" />
-              <textarea id="body" value={this.state.comment.body}
+              <textarea id="categoryName" value={this.state.category.categoryName}
                 onChange={this.bindInputToState}
-                name="body" className="form-control" cols="30" rows="10"></textarea>
+                name="categoryName" className="form-control" cols="30" rows="10"></textarea>
               <button type="submit" className="btn btn-success saveBtn" onChange={this.bindInputToState}>Save</button>
             </form>
           </div>
@@ -98,7 +101,7 @@ class Categories extends Component {
               <tbody>
                 {this.state.loading
                   ? <tr><td>LOADING</td></tr>
-                  : this.state.posts.map((x, i) => (
+                  : this.state.categories.map((x, i) => (
                     <tr key={i}>
                       <td>{x.id}</td>
                       <td>{x.body}</td>
@@ -106,7 +109,7 @@ class Categories extends Component {
                       <td>{x.userId}</td>
                       <td className="">
                         <div className="d-flex flex-wrap align-content-center">
-                          <button onClick={() => this.setState({ comment: x })} className="btn btn-warning editBtn">
+                          <button onClick={() => this.setState({ category: x })} className="btn btn-warning editBtn">
                             Edit
                         </button>
                           <button onClick={() => this.deletePost(x.id)} className="btn btn-danger deleteBtn">
