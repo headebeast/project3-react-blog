@@ -9,6 +9,7 @@ class Categories extends Component {
     category: {
       userId: '',
       categoryName: '',
+      Id: ''
     }
   }
 
@@ -80,7 +81,7 @@ class Categories extends Component {
             <form onSubmit={this.updatePost} className="formOn">
               <input id="userId" value={this.state.category.userId}
                 onChange={this.bindInputToState}
-                type="text" name="title" className="form-control" placeholder="Title" />
+                type="text" name="userId" className="form-control" placeholder="Title" />
               <textarea id="categoryName" value={this.state.category.categoryName}
                 onChange={this.bindInputToState}
                 name="categoryName" className="form-control" cols="30" rows="10"></textarea>
@@ -92,8 +93,6 @@ class Categories extends Component {
               <thead className="thead-dark">
                 <tr>
                   <th>Id</th>
-                  <th>body</th>
-                  <th>Post Id</th>
                   <th>user Id</th>
                   <th>Actions</th>
                 </tr>
@@ -103,10 +102,8 @@ class Categories extends Component {
                   ? <tr><td>LOADING</td></tr>
                   : this.state.categories.map((x, i) => (
                     <tr key={i}>
-                      <td>{x.id}</td>
+                      <td>{x.userId}</td>
                       <td>{x.categoryName}</td>
-                      <td>{x.userIdf}</td>
-                      <td>{x.postId}</td>
                       <td className="">
                         <div className="d-flex flex-wrap align-content-center">
                           <button onClick={() => this.setState({ category: x })} className="btn btn-warning editBtn">
