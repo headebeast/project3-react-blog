@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Route, NavLink } from 'react-router-dom';
-import { Navbar, Nav, NavItem, Collapse, NavbarBrand, NavbarToggler } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
+import { Navbar, Nav, NavItem, Collapse, NavbarToggler } from 'reactstrap';
 
 class Layout extends Component {
     state = {

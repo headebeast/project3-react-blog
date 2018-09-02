@@ -9,7 +9,7 @@ class Users extends Component {
 
   componentDidMount() {
     // Ofc, you should use the local not this link
-    axios.get('https://jsonplaceholder.typicode.com/users')
+    axios.get('http://localhost:3000/users')
       .then(res => {
         this.setState({
           users: res.data

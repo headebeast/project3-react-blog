@@ -1,3 +1,8 @@
+body {
+  background-color: rgb(rgb(238, 211, 211), rgb(210, 230, 210), rgb(210, 230, 210));
+  
+}
+
 .App {
   text-align: center;
 }
@@ -25,4 +30,38 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.editBtn, .deleteBtn {
+  margin: 4%;
+}
+
+.d-flex {
+  justify-content: center;
+}
+
+#title {
+  margin-bottom: 3%;
+  margin-top: 3%;
+}
+
+#body {
+  margin-bottom: 1%;
+}
+
+.saveBtn {
+  margin-bottom: 4%;
+}
+
+td {
+  font-weight: bold;
+  background-color: rgb(168, 200, 200);
+}
+
+thead {
+  font-size: 150%;
+}
+
+.card {
+  display: inline-table;
 }

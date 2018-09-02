@@ -1,0 +1,24 @@
+{
+  "posts": [{
+    "id": 1,
+    "userId": 1,
+    "title": "sunt aut ffdsfsddfslat provident occaecati excepturi optio reprehenderit",
+    "body": "quia etdandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrfdsfdsfdst rem eveniet architecto",
+    "categoryId": 1
+  }],
+  "comments": [{
+    "id": 1,
+    "body": "quia etdandae molestiae ut ut quas totam\nnostrfdsfdsfdst rem eveniet architecto",
+    "postId": 1,
+    "userId": 1
+  }],
+  "users": [{
+    "id": 1,
+    "name": "typicode",
+    "email": "user@example.com"
+  }],
+  "categories": [{
+    "id": 1,
+    "name": "Uncatagorized"
+  }]
+}
