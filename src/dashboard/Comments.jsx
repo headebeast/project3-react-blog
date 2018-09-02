@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { axios } from "axios";
+import  axios  from "axios";
 
 class Comments extends Component {
   
@@ -8,7 +8,7 @@ class Comments extends Component {
     comments: [],
     loading: true,
     comment: {
-      userId: '',
+      title: '',
       body: '',
     }
   }
@@ -58,13 +58,16 @@ class Comments extends Component {
 
               return x;
             }),
-            comment: { userId: '', body: '' }
+            comment: { title: '', body: '' }
           })
         })
     } else {
       axios.post('http://localhost:3000/comments/', this.state.comment)
         .then(res => {
-          console.log(res)
+          this.setState(prevState => ({
+            comments: [...prevState.comments, res.data],
+            comment: { title: '', body: '' }
+          }))
         })
     }
   }
@@ -76,7 +79,7 @@ class Comments extends Component {
         <div className="row">
           <div className="col-md-12">
             <form onSubmit={this.updatePost} className="formOn">
-              <input id="title" value={this.state.comment.userId}
+              <input id="title" value={this.state.comment.title}
                 onChange={this.bindInputToState}
                 type="text" name="title" className="form-control" placeholder="Title" />
               <textarea id="body" value={this.state.comment.body}
@@ -99,7 +102,7 @@ class Comments extends Component {
               <tbody>
                 {this.state.loading
                   ? <tr><td>LOADING</td></tr>
-                  : this.state.posts.map((x, i) => (
+                  : this.state.comments.map((x, i) => (
                     <tr key={i}>
                       <td>{x.id}</td>
                       <td>{x.body}</td>

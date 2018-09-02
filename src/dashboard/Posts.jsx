@@ -84,7 +84,7 @@ class Posts extends Component {
               <textarea id="body" value={this.state.post.body}
                 onChange={this.bindInputToState}
                 name="body" className="form-control" cols="30" rows="10"></textarea>
-              <button type="submit" className="btn btn-success saveBtn btn-lg" onChange={this.bindInputToState}>Save</button>
+              <button type="submit" className="btn btn-success saveBtn btn-lg btn-block" onChange={this.bindInputToState}>Save</button>
             </form>
           </div>
           <div className="col-lg-12 table-responsive">
@@ -92,9 +92,9 @@ class Posts extends Component {
               <thead className="thead-dark">
                 <tr className="table">
                   <th>Id</th>
-                  <th>body</th>
+                  <th>Title</th>
                   <th>User Id</th>
-                  <th>title</th>
+                  <th>Body</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -104,9 +104,9 @@ class Posts extends Component {
                   : this.state.posts.map((x, i) => (
                     <tr key={i}>
                       <td>{x.id}</td>
-                      <td>{x.body}</td>
-                      <td>{x.userId}</td>
                       <td>{x.title}</td>
+                      <td>{x.userId}</td>
+                      <td>{x.body}</td>
                       <td>
                         <div className="d-flex flex-wrap align-content-center">
                         <button onClick={() => this.setState({ post: x })} className="btn btn-warning editBtn">
